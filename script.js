@@ -1,106 +1,157 @@
-let numeroPremiado; // Variável para armazenar o número premiado
-let numeroEscolhido; // Variável para armazenar o número escolhido pelo jogador
-
-// Função para sortear um número aleatório entre 0 e 50
-function sortearNumero() {
-  const numeroSorteado = Math.floor(Math.random() * 51);
-  console.log('Numero sorteado:', numeroSorteado);
-  return numeroSorteado;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #fff
 }
 
-// Função para resetar o jogo
-function resetarJogo() {
-  numeroPremiado = sortearNumero();
-  document.getElementById('result').innerText = '';
-  numeroEscolhido = null; // Limpar o número escolhido pelo jogador
-  const numberButtons = document.getElementsByClassName('numberBtn');
-  for (let i = 0; i < numberButtons.length; i++) {
-    const button = numberButtons[i];
-    button.disabled = false;
-    button.style.backgroundColor = '#ffcc00';
+.body-custon{
+  text-align: center;
+  padding: 2px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding-top: 100px;
+}
+
+.container {
+  text-align: center;
+  padding: 2px;
+  border-radius: 5px;
+  background-color:  #db0303
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding-top: 100px;
+}
+
+h1 {
+  margin-top: 40;
+  padding: 20px;
+}
+
+#playBtn {
+  background-color: #319a3b;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#playBtn:hover {
+  background-color: #319a3b;
+}
+
+#numberButtons {
+  margin-top: 20px;
+}
+
+.numberBtn {
+  background-color: #ffc107;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 11px 31px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.numberBtn:hover {
+  background-color: #ffca2c;
+}
+
+.numberBtn:disabled {
+  background-color: #28a745;
+  cursor: default;
+}
+
+#linkInt{
+  background-color: #fdfdfd;
+  color: #848484;
+  text-decoration: solid;
+}
+
+#result {
+  margin-top: 20px;
+  font-weight: bold;
+  background-color: #fdfdfd;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding:  50px 33px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hidden {
+  display: none;
+}
+
+#choppImg {
+  width: 200px;
+  height: 200px;
+}
+
+
+#footer{
+margin-bottom: -30px;
+}
+
+/*Mobile*/
+@media (min-width: 200px) and (max-width: 320px) {
+.numberBtn {
+    background-color: #000;
+    color: #000 !important;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 13px 28px !important;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index:999;
   }
 }
 
-// Função para jogar o jogo
-function jogar() {
-  resetarJogo();
-  document.getElementById('numberButtons').style.display = 'block';
-  // Adicionar evento de clique para cada botão numérico
-  const numberButtons = document.getElementsByClassName('numberBtn');
-  for (let i = 0; i < numberButtons.length; i++) {
-    const button = numberButtons[i];
-    button.addEventListener('click', function() {
-      verificarEscolha(button);
-    });
-  }
-  document.getElementById('choppImg').classList.add('hidden');
-}
-
-// Função para gerar os botões numéricos
-function generateNumberButtons() {
-  const numberButtonsContainer = document.getElementById('numberButtons');
-  for (let i = 0; i <= 50; i++) {
-    const button = document.createElement('button');
-    button.classList.add('numberBtn');
-    button.innerText = i.toString().padStart(2, '0'); // Adiciona um zero à esquerda se o número for menor que 10
-    numberButtonsContainer.appendChild(button);
+@media (min-width : 480px) and (max-width: 768px) {
+   .numberBtn {
+    background-color: #000;
+    color: #000 !important;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 13px 28px !important;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index:999;
   }
 }
 
-function verificarEscolha(button) {
-  numeroEscolhido = parseInt(button.innerText);
-
-  const numberButtons = document.getElementsByClassName('numberBtn');
-
-  if (numeroEscolhido < numeroPremiado) {
-    // Desativar os números inferiores ao número escolhido ou até o 00
-    if (numeroEscolhido < numeroPremiado) {
-      for (let i = 0; i <= numeroEscolhido ; i++) {
-        const button = numberButtons[i];
-        button.style.backgroundColor = '#b5b4b4'; // Tornar o botão vermelho
-        button.disabled = true;
-      }
-    } else {
-      for (let i = 0; i <= 50; i++) {
-        const button = numberButtons[i];
-        button.style.backgroundColor = '#b5b4b4'; // Tornar o botão vermelho
-        button.disabled = true;
-      }
-    }
-  }
-
-
-  if (numeroEscolhido > numeroPremiado) {
-      // Desativar os números superiores ao número escolhido ou até o 50
-    if (numeroEscolhido > numeroPremiado) {
-      for (let i = numeroEscolhido; i <= 50; i++) {
-        const button = numberButtons[i];
-        button.style.backgroundColor = '#b5b4b4'; // Tornar o botão vermelho
-        button.disabled = true;
-      }
-    } else {
-      for (let i = numeroPremiado + 1; i <= 50; i++) {
-        const button = numberButtons[i];
-        button.style.backgroundColor = '#b5b4b4'; // Tornar o botão vermelho
-        button.disabled = true;
-      }
-    }
-  }
-
-  // Verificar se o número escolhido é o número premiado
-  if (numeroEscolhido === numeroPremiado) {
-    document.getElementById('result').innerText = 'Acertou Mizeravi...  N⍛' + numeroEscolhido;
-    button.style.backgroundColor = '#00cc00'; // Tornar o botão verde
-    document.getElementById('numberButtons').style.display = 'none';
-    document.getElementById('choppImg').classList.remove('hidden');
-
-    // Desabilitar os demais botões
-    for (let i = 0; i < numberButtons.length; i++) {
-      const button = numberButtons[i];
-      button.disabled = true;
-    }
+@media screen and (width: 360px) and (height: 740px) {
+  .numberBtn {
+    background-color: #000;
+    color: #000 !important;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 13px 28px !important;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index:999;
   }
 }
-
-// Associar a função jogar ao botão de jogar
-document.getElementById('playBtn').addEventListener('click', jogar);
