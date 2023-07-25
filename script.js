@@ -26,14 +26,15 @@ function resetarJogo() {
 function jogar() {
   resetarJogo();
   stopAudio();
-  var audio = new Audio('audio/click001.mp3');
-  audio.play();
   document.getElementById('numberButtons').style.display = 'block';
+
   // Adicionar evento de clique para cada botão numérico
   const numberButtons = document.getElementsByClassName('numberBtn');
   for (let i = 0; i < numberButtons.length; i++) {
     const button = numberButtons[i];
     button.addEventListener('click', function() {
+      var audio = new Audio('audio/click001.mp3');
+      audio.play(); 
       verificarEscolha(button);      
     });
   }
