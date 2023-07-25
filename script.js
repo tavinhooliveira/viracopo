@@ -33,8 +33,8 @@ function jogar() {
     const button = numberButtons[i];
     button.addEventListener('click', function() {
       verificarEscolha(button);
-      var audio = new Audio('audio/click001.mp3');
-      audio.play();
+      //var audio = new Audio('audio/click001.mp3');
+      //audio.play();
     });
   }
   document.getElementById('choppImg').classList.add('hidden');
