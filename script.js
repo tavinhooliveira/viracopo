@@ -33,8 +33,8 @@ function jogar() {
   for (let i = 0; i < numberButtons.length; i++) {
     const button = numberButtons[i];
     button.addEventListener('click', function() {
-      var audio = new Audio('audio/click001.mp3');
-      audio.play(); 
+      //var audio = new Audio('audio/click001.mp3');
+      //audio.play(); 
       verificarEscolha(button);      
     });
   }
