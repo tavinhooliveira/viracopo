@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <title>Vira Copo v1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="shortcut icon" href="img/logo.ico" />
+</head>
+<body>
+  <div class="container">
+    <img id="imgLogo" src="img/logo.png" alt="logo" class="">
+    <h1>Vira Copo</h1>
+    <button id="playBtn">Sortear</button>
+    <div id="numberButtons"  class="hidden">
+      <!-- Botões numéricos de 0 a 50 -->
+      <script>
+      for (let i = 0; i <= 50; i++) {
+        const numeroFormatado = i.toString().padStart(2, '0');
+        document.write(`<button class="numberBtn">${numeroFormatado}</button>`);
+      }
+    </script>
+    </div>
+
+    <div class="container" id="result" style="color:green ;"></div>
+    <!-- <img id="choppImg" src="img/beer.png" alt="Chopp" class="hidden"> -->
+    <img id="choppImg" src="img/tavinho.gif" alt="Chopp" class="hidden">
+
+    <footer id="footer" style="color: green;">
+         <a id="linkInt" href="https://www.instagram.com/tavinhooliveira/?igshid=MmIzYWVlNDQ5Yg%3D%3D">by: TavinhoOliveira </a>
+    </footer>
+
+    </div>   
+
+  <script src="script.js"></script>
+</body>
+</html>
